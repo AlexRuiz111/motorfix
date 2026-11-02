@@ -27,4 +27,4 @@ class Conexion {
     public function getConnection() {
         return $this->pdo;
     }
-}
+} 

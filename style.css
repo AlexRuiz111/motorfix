@@ -1,0 +1,314 @@
+/* Reseteo básico de márgenes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #121212; 
+}
+
+/* Contenedor principal de la pantalla dividida */
+.pantalla-dividida {
+    display: flex;
+    min-height: 100vh; /* Ocupa el 100% del alto de la ventana */
+    width: 100%;
+}
+
+/* --- PANEL IZQUIERDO (Visual) --- */
+.panel-visual {
+    flex: 1; /* Ocupa el espacio restante (aprox 60-70%) */
+    /* Fondo oscuro semitransparente mezclado con una imagen de motor de stock libre */
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.8)), 
+                url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.overlay {
+    text-align: center;
+    padding: 2.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(8px); /* Efecto cristal */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.overlay h1 {
+    font-size: 4rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    color: #ff4757; /* Rojo mecánico/racing */
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.overlay p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    letter-spacing: 1px;
+}
+
+/* --- PANEL DERECHO (Login) --- */
+.panel-login {
+    width: 100%;
+    max-width: 500px; /* Ancho fijo para el panel derecho */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    box-shadow: -15px 0 30px rgba(0,0,0,0.5); /* Sombra hacia la izquierda para dar profundidad */
+}
+
+.contenido-login {
+    width: 100%;
+}
+
+.contenido-login h2 {
+    font-size: 2.2rem;
+    color: #2f3542;
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    color: #747d8c;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.grupo-input {
+    margin-bottom: 1.8rem;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2f3542;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #f1f2f6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.grupo-input input:focus {
+    outline: none;
+    border-color: #ff4757;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.15);
+}
+
+.btn-motorfix {
+    width: 100%;
+    padding: 16px;
+    background-color: #2f3542;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 15px;
+}
+
+.btn-motorfix:hover {
+    background-color: #ff4757; /* Pasa de gris oscuro a rojo al pasar el ratón */
+}
+
+.btn-motorfix:active {
+    transform: scale(0.98); /* Efecto de pulsación */
+}
+
+.enlaces-extra {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #57606f;
+}
+
+.enlaces-extra a {
+    color: #ff4757;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.enlaces-extra a:hover {
+    text-decoration: underline;
+}
+
+/* --- RESPONSIVE (Móviles) --- */
+@media (max-width: 768px) {
+    .pantalla-dividida {
+        flex-direction: column; /* Apila los paneles en vertical */
+    }
+    .panel-visual {
+        min-height: 250px;
+        flex: none;
+    }
+    .panel-login {
+        max-width: 100%;
+        padding: 2.5rem;
+        box-shadow: none;
+    }
+}
+
+/* --- PANEL DE CLIENTE --- */
+.dashboard-body {
+    background-color: #0a0a0c;
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #121214;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 71, 87, 0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.navbar h1 { 
+    font-style: italic; 
+    font-size: 1.8rem; 
+    color: #ff4757;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-name {
+    color: #a0aec0;
+    font-size: 0.95rem;
+}
+
+.logout-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #ff4757;
+    border-color: #ff4757;
+    color: white;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.dashboard-header {
+    margin-bottom: 3rem;
+}
+
+.dashboard-header h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.grid-modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.modulo-dark {
+    background: linear-gradient(145deg, #16161a 0%, #101012 100%);
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modulo-dark:hover {
+    transform: translateY(-5px);
+    border-color: #ff4757;
+    box-shadow: 0 10px 30px rgba(255, 71, 87, 0.1);
+}
+
+.modulo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 1rem;
+}
+
+.modulo-header h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.badge {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.modulo-dark p {
+    color: #a0aec0;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.btn-outline-red {
+    background: transparent;
+    color: #e2e8f0;
+    border: 1px solid #4a5568;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-red:hover {
+    background: #ff4757;
+    border-color: #ff4757;
+    color: white;
+}
