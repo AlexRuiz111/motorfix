@@ -40,6 +40,10 @@ switch ($action) {
         procesarLogout();
         break;
 
+    case 'session': // Comprueba si hay una sesión activa
+        procesarSession();
+        break;
+
     default: // Si envían una acción inventada
         http_response_code(404);
         echo json_encode([
@@ -128,5 +132,24 @@ function procesarLogout() {
         "status" => "success",
         "message" => "Sesión cerrada correctamente"
     ]);
+}
+
+function procesarSession() {
+    // Comprueba si el "cajón" del DNI existe en la memoria del servidor
+    if (isset($_SESSION['cliente_dni'])) { 
+        echo json_encode([
+            "status" => "success",
+            "message" => "Sesión activa",
+            "data" => [
+                "nombre" => $_SESSION['cliente_nombre']
+            ]
+        ]);
+    } else {
+        http_response_code(401); // 401: No autorizado
+        echo json_encode([
+            "status" => "error",
+            "message" => "No hay sesión activa"
+        ]);
+    }
 }
 ?>
