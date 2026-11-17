@@ -9,47 +9,128 @@
 <body class="dashboard-body">
 
     <nav class="navbar">
-        <h1>MOTORFIX</h1>
+        <div class="texto-logo">MOTORFIX</div>
         <div class="user-menu">
-            <span class="user-name">Hola, <strong id="nombreUsuario">Cliente</strong></span>
-            <button id="btnLogout" class="logout-link" style="background:none; border:none; cursor:pointer; font:inherit;">Cerrar Sesión</button>
+            <span class="user-name">Hola, <strong id="nombreUsuario" class="texto-resaltado">Cliente</strong></span>
+            <button id="btnLogout" class="logout-link btn-limpio">Cerrar Sesión</button>
         </div>
     </nav>
 
     <main class="dashboard-container">
-        <header class="dashboard-header">
-            <h2>Resumen de tu cuenta</h2>
-            <p>Gestiona tus vehículos, mantenimientos y facturación desde un solo lugar.</p>
-        </header>
+        
+        <!-- VISTA PRINCIPAL: RESUMEN Y TARJETAS -->
+        <div id="vista-resumen" class="vista-activa">
+            <header class="dashboard-header">
+                <div class="titulo-dashboard">Resumen de tu cuenta</div>
+                <div class="texto-dashboard">Gestiona tus vehículos, mantenimientos y facturación desde un solo lugar.</div>
+            </header>
 
-        <div class="grid-modulos">
-            <article class="modulo-dark">
-                <div class="modulo-header">
-                    <h3>Mis Vehículos</h3>
-                    <span class="badge">Activos</span>
-                </div>
-                <p>Accede a la ficha técnica, historial de intervenciones y estado actual de tus coches en el taller.</p>
-                <button class="btn-outline-red">Acceder al Garaje</button>
-            </article>
+            <div class="grid-modulos">
+                <article class="modulo-dark">
+                    <div class="modulo-header">
+                        <div class="titulo-modulo">Mis Vehículos</div>
+                        <span class="badge">Activos</span>
+                    </div>
+                    <div class="texto-modulo">Accede a la ficha técnica, historial de intervenciones y estado actual de tus coches en el taller.</div>
+                    <button id="btn-acceder-garaje" class="btn-outline-red">Acceder al Garaje</button>
+                </article>
 
-            <article class="modulo-dark">
-                <div class="modulo-header">
-                    <h3>Citas y Revisiones</h3>
-                    <span class="badge">Agenda</span>
-                </div>
-                <p>Programa nuevos mantenimientos, revisiones pre-ITV o reporta averías directamente al jefe de taller.</p>
-                <button class="btn-outline-red">Solicitar Turno</button>
-            </article>
+                <article class="modulo-dark">
+                    <div class="modulo-header">
+                        <div class="titulo-modulo">Citas y Revisiones</div>
+                        <span class="badge">Agenda</span>
+                    </div>
+                    <div class="texto-modulo">Programa nuevos mantenimientos, revisiones pre-ITV o reporta averías directamente al jefe de taller.</div>
+                    <button id="btn-acceder-citas" class="btn-outline-red">Solicitar Turno</button>
+                </article>
 
-            <article class="modulo-dark">
-                <div class="modulo-header">
-                    <h3>Facturación</h3>
-                    <span class="badge">Finanzas</span>
-                </div>
-                <p>Consulta presupuestos pendientes, historial de pagos y descarga tus facturas en formato PDF.</p>
-                <button class="btn-outline-red">Ver Historial</button>
-            </article>
+                <article class="modulo-dark">
+                    <div class="modulo-header">
+                        <div class="titulo-modulo">Facturación</div>
+                        <span class="badge">Finanzas</span>
+                    </div>
+                    <div class="texto-modulo">Consulta presupuestos pendientes, historial de pagos y descarga tus facturas en formato PDF.</div>
+                    <button id="btn-acceder-facturas" class="btn-outline-red">Ver Historial</button>
+                </article>
+            </div>
         </div>
+
+        <!-- SECCIÓN: MI GARAJE -->
+        <section id="seccion-garaje" class="panel-seccion oculto">
+            <button class="btn-volver btn-limpio" id="btn-volver-garaje">← Volver al resumen</button>
+            <div class="titulo-dashboard margen-superior">Mis Vehículos</div>
+            <button id="btn-nuevo-vehiculo" class="btn-rojo-solido">Añadir Nuevo Vehículo</button>
+            
+            <div id="lista-vehiculos" class="contenedor-lista"></div>
+
+            <div id="modal-vehiculo" class="modal-formulario oculto">
+                <div class="titulo-modal">Registrar Nuevo Vehículo</div>
+                <form id="form-vehiculo" class="formulario-estandar">
+                    <div class="grupo-input">
+                        <label class="form-label" for="v-matricula">Matrícula</label>
+                        <input type="text" id="v-matricula" class="form-input" placeholder="Ej: 1234ABC" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="form-label" for="v-marca">Marca</label>
+                        <input type="text" id="v-marca" class="form-input" placeholder="Ej: Toyota" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="form-label" for="v-modelo">Modelo</label>
+                        <input type="text" id="v-modelo" class="form-input" placeholder="Ej: Corolla" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="form-label" for="v-anyo">Año</label>
+                        <input type="number" id="v-anyo" class="form-input" placeholder="Ej: 2020" required>
+                    </div>
+                    <div class="acciones-form">
+                        <button type="submit" class="btn-rojo-solido">Guardar Vehículo</button>
+                        <button type="button" id="btn-cancelar-vehiculo" class="btn-gris">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MIS CITAS -->
+        <section id="seccion-citas" class="panel-seccion oculto">
+            <button class="btn-volver btn-limpio" id="btn-volver-citas">← Volver al resumen</button>
+            <div class="titulo-dashboard margen-superior">Mis Citas</div>
+            <button id="btn-nueva-cita" class="btn-rojo-solido">Solicitar Nueva Cita</button>
+            
+            <div id="lista-citas" class="contenedor-lista"></div>
+
+            <div id="modal-cita" class="modal-formulario oculto">
+                <div class="titulo-modal">Solicitar Turno en el Taller</div>
+                <form id="form-cita" class="formulario-estandar">
+                    <div class="grupo-input">
+                        <label class="form-label" for="c-matricula">Vehículo</label>
+                        <select id="c-matricula" class="form-input select-input" required>
+                            <option value="">Selecciona un vehículo...</option>
+                        </select>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="form-label" for="c-fecha">Fecha y Hora</label>
+                        <input type="datetime-local" id="c-fecha" class="form-input" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="form-label" for="c-motivo">Motivo de la visita</label>
+                        <textarea id="c-motivo" class="form-input textarea-input" placeholder="Describe el problema o revisión..." required></textarea>
+                    </div>
+                    <div class="acciones-form">
+                        <button type="submit" class="btn-rojo-solido">Confirmar Cita</button>
+                        <button type="button" id="btn-cancelar-cita" class="btn-gris">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MIS FACTURAS -->
+        <section id="seccion-facturas" class="panel-seccion oculto">
+            <button class="btn-volver btn-limpio" id="btn-volver-facturas">← Volver al resumen</button>
+            <div class="titulo-dashboard margen-superior">Historial de Facturas</div>
+            
+            <div id="lista-facturas" class="contenedor-lista"></div>
+        </section>
+
     </main>
 
     <script src="panel.js"></script>

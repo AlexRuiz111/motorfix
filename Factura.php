@@ -116,7 +116,6 @@ class Factura {
             die("Error al borrar factura: " . $e->getMessage());
         }
     }
---
 
     public function calcularTotal() {
         return round($this->subtotal + ($this->subtotal * ($this->iva / 100)), 2);
